@@ -45,7 +45,7 @@ export default function Home() {
           {loggedIn ? (
             <>
               <div>You are logged in!</div>
-              {user && <>Welcome {user?.user_metadata.fullname}!</>}
+              {user && <>Welcome {user?.user_metadata.full_name}!</>}
               <button type="button" onClick={logout}>
                 Log out here.
               </button>
