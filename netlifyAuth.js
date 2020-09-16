@@ -27,11 +27,10 @@ const netlifyAuth = {
       callback();
     });
   },
-  closeModal() {
+  closeModal(callback) {
     netlifyIdentity.close();
     netlifyIdentity.on("close", () => {
-      console.log("close");
-      window.location.reload();
+      callback();
     });
   },
 };

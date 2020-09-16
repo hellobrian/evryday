@@ -28,7 +28,10 @@ export default function Home() {
       /**
        * Use when you want to close OAuth providers modal and refresh page with updated user state
        */
-      netlifyAuth.closeModal();
+      netlifyAuth.closeModal(() => {
+        console.log("close");
+        window.location.reload();
+      });
     });
   };
 
