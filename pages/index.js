@@ -25,13 +25,6 @@ export default function Home() {
     netlifyAuth.authenticate((user) => {
       setLoggedIn(!!user);
       setUser(user);
-      /**
-       * Use when you want to close OAuth providers modal and refresh page with updated user state
-       */
-      netlifyAuth.closeModal(() => {
-        console.log("close");
-        window.location.reload();
-      });
     });
   };
 

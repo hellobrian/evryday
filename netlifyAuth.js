@@ -18,18 +18,16 @@ const netlifyAuth = {
       callback(user);
       netlifyIdentity.close();
     });
+    netlifyIdentity.on("close", () => {
+      console.log("close");
+      window.location.reload();
+    });
   },
   signout(callback) {
     this.isAuthenticated = false;
     netlifyIdentity.logout();
     netlifyIdentity.on("logout", () => {
       this.user = null;
-      callback();
-    });
-  },
-  closeModal(callback) {
-    netlifyIdentity.close();
-    netlifyIdentity.on("close", () => {
       callback();
     });
   },
