@@ -7,11 +7,28 @@ export default function Home() {
   let [loggedIn, setLoggedIn] = useState(netlifyAuth.isAuthenticated);
   let [user, setUser] = useState(null);
 
+  useEffect(() => {
+    let isCurrent = true;
+    netlifyAuth.initialize((user) => {
+      if (isCurrent) {
+        setLoggedIn(!!user);
+        setUser(user);
+      }
+    });
+
+    return () => {
+      isCurrent = false;
+    };
+  }, []);
+
   let login = () => {
     netlifyAuth.authenticate((user) => {
       setLoggedIn(!!user);
       setUser(user);
-      netlifyAuth.closeModal();
+      /**
+       * Use when you want to close OAuth providers modal after logging in
+       */
+      // netlifyAuth.closeModal();
     });
   };
 
@@ -21,13 +38,6 @@ export default function Home() {
       setUser(null);
     });
   };
-
-  useEffect(() => {
-    netlifyAuth.initialize((user) => {
-      setLoggedIn(!!user);
-      setUser(user);
-    });
-  }, [loggedIn]);
 
   return (
     <div className={styles.container}>
