@@ -26,9 +26,9 @@ export default function Home() {
       setLoggedIn(!!user);
       setUser(user);
       /**
-       * Use when you want to close OAuth providers modal after logging in
+       * Use when you want to close OAuth providers modal and refresh page with updated user state
        */
-      // netlifyAuth.closeModal();
+      netlifyAuth.closeModal();
     });
   };
 
