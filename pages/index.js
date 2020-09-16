@@ -20,13 +20,8 @@ export default function Home() {
 
     return () => {
       isCurrent = false;
-    };
-  }, []);
-
-  useEffect(() => {
-    if (user) {
       router.reload();
-    }
+    };
   }, []);
 
   let login = () => {
