@@ -2,12 +2,10 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import { useEffect, useState } from "react";
 import netlifyAuth from "../netlifyAuth.js";
-import { useRouter } from "next/router";
 
 export default function Home() {
   let [loggedIn, setLoggedIn] = useState(netlifyAuth.isAuthenticated);
   let [user, setUser] = useState(null);
-  const router = useRouter();
 
   useEffect(() => {
     let isCurrent = true;
@@ -20,7 +18,6 @@ export default function Home() {
 
     return () => {
       isCurrent = false;
-      router.reload();
     };
   }, []);
 
