@@ -27,13 +27,12 @@ const netlifyAuth = {
       callback();
     });
   },
-  /**
-   * use if you want to close modal when using Oauth Providers
-   */
-  closeModal(callback) {
+  closeModal() {
     netlifyIdentity.close();
-    window.location.reload();
-    callback();
+    netlifyIdentity.on("close", () => {
+      console.log("close");
+      window.location.reload();
+    });
   },
 };
 
