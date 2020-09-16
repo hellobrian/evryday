@@ -17,10 +17,8 @@ const netlifyAuth = {
       this.user = user;
       callback(user);
       netlifyIdentity.close();
-      netlifyIdentity.on("close", () => {
-        console.log("close");
-        window.location.reload();
-      });
+      console.log("close");
+      window.location.reload();
     });
   },
   signout(callback) {
