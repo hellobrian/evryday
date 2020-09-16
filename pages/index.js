@@ -7,11 +7,24 @@ export default function Home() {
   let [loggedIn, setLoggedIn] = useState(netlifyAuth.isAuthenticated);
   let [user, setUser] = useState(null);
 
+  useEffect(() => {
+    let isCurrent = true;
+    netlifyAuth.initialize((user) => {
+      if (isCurrent) {
+        setLoggedIn(!!user);
+        setUser(user);
+      }
+    });
+
+    return () => {
+      isCurrent = false;
+    };
+  }, []);
+
   let login = () => {
     netlifyAuth.authenticate((user) => {
       setLoggedIn(!!user);
       setUser(user);
-      netlifyAuth.closeModal();
     });
   };
 
@@ -21,13 +34,6 @@ export default function Home() {
       setUser(null);
     });
   };
-
-  useEffect(() => {
-    netlifyAuth.initialize((user) => {
-      setLoggedIn(!!user);
-      setUser(user);
-    });
-  }, [loggedIn]);
 
   return (
     <div className={styles.container}>
@@ -45,7 +51,7 @@ export default function Home() {
           {loggedIn ? (
             <>
               <div>You are logged in!</div>
-              {user && <>Welcome {user?.user_metadata.fullname}!</>}
+              {user && <>Welcome {user?.user_metadata.full_name}!</>}
               <button type="button" onClick={logout}>
                 Log out here.
               </button>
