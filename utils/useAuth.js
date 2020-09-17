@@ -26,8 +26,8 @@ export function useAuth() {
   });
 
   useEffect(() => {
-    netlifyAuth.initialize((user) => {
-      dispatch({ type: 'init', payload: user });
+    netlifyAuth.initialize(async (user) => {
+      dispatch({ type: 'init', payload: await user });
     });
   }, [state.user]);
 

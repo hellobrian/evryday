@@ -4,11 +4,9 @@ export const netlifyAuth = {
   isAuthenticated: false,
   user: null,
   initialize(callback) {
-    this.isAuthenticated = true;
     window.netlifyIdentity = netlifyIdentity;
     netlifyIdentity.on('init', (user) => {
       console.log('init');
-      this.user = user;
       callback(user);
     });
     netlifyIdentity.init();
