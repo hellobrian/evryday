@@ -1,42 +1,6 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
-import { useEffect, useState } from "react";
-import netlifyAuth from "../netlifyAuth.js";
-
-function useAuth() {
-  let [loggedIn, setLoggedIn] = useState(netlifyAuth.isAuthenticated);
-  let [user, setUser] = useState(null);
-
-  useEffect(() => {
-    let isCurrent = true;
-    netlifyAuth.initialize((user) => {
-      if (isCurrent) {
-        setLoggedIn(!!user);
-        setUser(user);
-      }
-    });
-
-    return () => {
-      isCurrent = false;
-    };
-  }, []);
-
-  let login = () => {
-    netlifyAuth.authenticate((user) => {
-      setLoggedIn(!!user);
-      setUser(user);
-    });
-  };
-
-  let logout = () => {
-    netlifyAuth.signout(() => {
-      setLoggedIn(false);
-      setUser(null);
-    });
-  };
-
-  return { login, logout, user, loggedIn };
-}
+import { useAuth } from "../utils/useAuth";
 
 export default function Home() {
   const { login, logout, user, loggedIn } = useAuth();
