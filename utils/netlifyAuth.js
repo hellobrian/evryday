@@ -18,7 +18,8 @@ export const netlifyAuth = {
     netlifyIdentity.on('login', (user) => {
       this.user = user;
       callback(user);
-      window.location.reload();
+
+      setTimeout(() => window.location.reload(), 1000);
     });
   },
   authenticate(callback) {
