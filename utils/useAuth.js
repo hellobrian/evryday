@@ -26,16 +26,9 @@ export function useAuth() {
   });
 
   useEffect(() => {
-    // let isCurrent = true;
     netlifyAuth.initialize((user) => {
-      // if (isCurrent) {
       dispatch({ type: 'init', payload: user });
-      // }
     });
-
-    // return () => {
-    //   isCurrent = false;
-    // };
   }, []);
 
   const login = () => {
