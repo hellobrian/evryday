@@ -28,9 +28,6 @@ export function useAuth() {
   useEffect(() => {
     netlifyAuth.initialize((user) => {
       dispatch({ type: 'init', payload: user });
-      if (user) {
-        window.location.reload();
-      }
     });
   }, [state.user]);
 
