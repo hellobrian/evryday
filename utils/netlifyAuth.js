@@ -7,7 +7,7 @@ export const netlifyAuth = {
     window.netlifyIdentity = netlifyIdentity;
     console.log('currentUser', netlifyIdentity.currentUser());
 
-    if (netlifyIdentity.currentUser()) {
+    if (!netlifyIdentity.currentUser()) {
       this.authenticate();
     }
     netlifyIdentity.on('init', (user) => {
