@@ -7,7 +7,7 @@ export default function Home() {
   const { login, logout, user, loggedIn } = useAuth();
 
   useEffect(() => {
-    console.log({ user });
+    console.log({ user, loggedIn });
   }, [user]);
 
   return (

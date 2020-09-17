@@ -29,7 +29,7 @@ export function useAuth() {
     netlifyAuth.initialize((user) => {
       dispatch({ type: 'init', payload: user });
     });
-  }, []);
+  }, [state.user]);
 
   const login = () => {
     netlifyAuth.authenticate((user) => {
