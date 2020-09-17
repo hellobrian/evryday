@@ -5,13 +5,10 @@ export const netlifyAuth = {
   user: null,
   initialize(callback) {
     window.netlifyIdentity = netlifyIdentity;
-    console.log('currentUser', netlifyIdentity.currentUser());
 
-    if (!netlifyIdentity.currentUser()) {
-      this.authenticate();
-    }
     netlifyIdentity.on('init', (user) => {
       console.log('init');
+      this.authenticate();
       callback(user);
     });
     netlifyIdentity.init();
