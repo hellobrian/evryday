@@ -6,6 +6,7 @@ export const netlifyAuth = {
   initialize(callback) {
     window.netlifyIdentity = netlifyIdentity;
     netlifyIdentity.on('init', (user) => {
+      console.log('init');
       callback(user);
     });
     netlifyIdentity.init();
@@ -14,6 +15,7 @@ export const netlifyAuth = {
     this.isAuthenticated = true;
     netlifyIdentity.open();
     netlifyIdentity.on('login', (user) => {
+      console.log('login');
       this.user = user;
       callback(user);
       netlifyIdentity.close();
@@ -23,6 +25,7 @@ export const netlifyAuth = {
     this.isAuthenticated = false;
     netlifyIdentity.logout();
     netlifyIdentity.on('logout', () => {
+      console.log('logout');
       this.user = null;
       callback();
     });
