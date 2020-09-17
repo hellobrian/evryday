@@ -15,12 +15,8 @@ export const netlifyAuth = {
     /**
      * Delete this if OAuth gets fixed to update user state after login. This kinda makes normal email login jank.
      */
-    // netlifyIdentity.on('close', () => {
-    //   window.location.reload();
-    // });
     netlifyIdentity.on('login', (user) => {
       this.user = user;
-      callback(user);
     });
   },
   authenticate(callback) {
