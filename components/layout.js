@@ -7,7 +7,7 @@ export function Layout({ children }) {
         <title>Evryday</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {children}
+      <main>{children}</main>
       <style jsx global>
         {`
           html,
