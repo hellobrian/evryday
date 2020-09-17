@@ -26,9 +26,15 @@ export function useAuth() {
   });
 
   useEffect(() => {
+    let timeout;
     netlifyAuth.initialize(async (user) => {
       dispatch({ type: 'init', payload: await user });
+      timeout = setTimeout(() => window.location.reload(), 500);
     });
+
+    return () => {
+      clearTimeout(timeout);
+    };
   }, [state.user]);
 
   const login = () => {
