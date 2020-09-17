@@ -1,14 +1,9 @@
 import Head from 'next/head';
-import { useEffect } from 'react';
 import styles from '../styles/Home.module.css';
 import { useAuth } from '../utils/useAuth';
 
 export default function Home() {
   const { login, logout, user, loggedIn } = useAuth();
-
-  useEffect(() => {
-    console.log({ user, loggedIn });
-  }, [user]);
 
   return (
     <div className={styles.container}>

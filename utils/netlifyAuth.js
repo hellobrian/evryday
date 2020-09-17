@@ -7,20 +7,23 @@ export const netlifyAuth = {
     window.netlifyIdentity = netlifyIdentity;
 
     netlifyIdentity.on('init', (user) => {
-      console.log('init');
       callback(user);
     });
+
+    netlifyIdentity.init();
+
+    /**
+     * Delete this if OAuth gets fixed to update user state after login. This kinda makes normal email login jank.
+     */
     netlifyIdentity.on('close', () => {
       window.location.reload();
     });
     netlifyIdentity.on('login', () => netlifyIdentity.close());
-    netlifyIdentity.init();
   },
   authenticate(callback) {
     this.isAuthenticated = true;
     netlifyIdentity.open();
     netlifyIdentity.on('login', (user) => {
-      console.log('login');
       this.user = user;
       callback(user);
       netlifyIdentity.close();
@@ -30,7 +33,6 @@ export const netlifyAuth = {
     this.isAuthenticated = false;
     netlifyIdentity.logout();
     netlifyIdentity.on('logout', () => {
-      console.log('logout');
       this.user = null;
       callback();
     });
