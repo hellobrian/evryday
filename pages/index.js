@@ -3,7 +3,7 @@ import styles from "../styles/Home.module.css";
 import { useEffect, useState } from "react";
 import netlifyAuth from "../netlifyAuth.js";
 
-export default function Home() {
+function useAuth() {
   let [loggedIn, setLoggedIn] = useState(netlifyAuth.isAuthenticated);
   let [user, setUser] = useState(null);
 
@@ -34,6 +34,12 @@ export default function Home() {
       setUser(null);
     });
   };
+
+  return { login, logout, user, loggedIn };
+}
+
+export default function Home() {
+  const { login, logout, user, loggedIn } = useAuth();
 
   return (
     <div className={styles.container}>
