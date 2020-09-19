@@ -1,7 +1,12 @@
 {
   "extends": ["nextjs", "prettier"],
-  "plugins": ["prettier"],
+  "plugins": ["prettier", "import"],
   "rules": {
     "prettier/prettier": ["error"]
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": { "alwaysTryTypes": true }
+    }
   }
 }

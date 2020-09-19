@@ -1,5 +1,5 @@
-import { useAuth } from '../utils/useAuth';
-import { Layout } from '../components/layout';
+import { useAuth } from '@app/utils/useAuth';
+import { Layout } from '@app/components/layout';
 
 export default function Home() {
   const { login, logout, user, loggedIn } = useAuth();
