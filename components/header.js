@@ -1,11 +1,7 @@
-import { useAuth } from '@app/utils/useAuth';
-
-export function Header() {
-  const { login, logout, user, loggedIn } = useAuth();
-
+export function Header({ login, logout, user, loggedIn }) {
   return (
     <>
-      <div className="root">
+      <header className="root">
         <h1>Evryday</h1>
         {loggedIn ? (
           <span className="logged-in">
@@ -23,12 +19,13 @@ export function Header() {
             </button>
           </span>
         )}
-      </div>
+      </header>
       <style jsx>
         {`
-          .root {
+          header {
             display: grid;
             grid-template-columns: 1fr auto;
+            padding: 0 1rem;
             background: green;
             align-items: center;
           }

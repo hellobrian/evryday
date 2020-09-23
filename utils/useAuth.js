@@ -1,5 +1,5 @@
 import { useEffect, useReducer } from 'react';
-import { netlifyAuth } from './netlifyAuth';
+import { netlifyAuth } from '@app/utils';
 
 function authReducer(_, action) {
   switch (action.type) {
